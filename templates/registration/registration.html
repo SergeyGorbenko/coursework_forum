@@ -17,35 +17,39 @@
 <section class="registration">
     <div class="registration_container">
         <form method="post" class="registration_form" action="/registration/">
+
             {% csrf_token %}
-            <ul>
-                {% for error in errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% if errors %}
-                <p class="input_error">Username error</p>
+
+
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.errors %}
+                        {% if error == "username" %}
+                            User already exists<br/>
+                        {% else %}
+                            {% if error == "email" %}
+                                Wrong email<br/>
+                            {% else %}
+                                {% if error == "password2" %}
+                                    Invalid password or Passwords do not match<br/>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% endif %}
-            <div class="input_div">
-                <p class="field_desc">{{ form.username.label }}</p>
-                <p class="field">{{ form.username }}</p>
-            </div>
-            <div class="input_div">
-                <p class="field_desc">{{ form.email.label }}</p>
-                <p class="field">{{ form.email }}</p>
-            </div>
-            <div class="input_div">
-                <p class="field_desc">{{ form.password1.label }}</p>
-                <p class="field">{{ form.password1 }}</p>
-            </div>
-            <div class="input_div">
-                <p class="field_desc">{{ form.password2.label }}</p>
-                <p class="field">{{ form.password2 }}</p>
-            </div>
-            <div>
-                <input type="submit" value="Create account" class="btn btn-primary forum_btn"/>
-                <input type="hidden" name="next" value="{{ next }}"/>
-            </div>
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label }}<br/>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </section>

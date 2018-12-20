@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from forum.models import *
 
@@ -14,7 +13,7 @@ def index(request):
 
 def registration(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('')
+        return redirect('/')
     if request.method == 'GET':
         form = Registration()
         return render(request, 'registration/registration.html', {'form': form})
@@ -26,9 +25,18 @@ def registration(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect('/post/')
+            return redirect('/')
         else:
-            # If there were errors, we render the form with these
-            # errors
             return render(request, 'registration/registration.html', {'form': form})
-    return render(request, 'registration/registration.html', {'form': Registration()})
+
+
+def posts(request):
+    return None
+
+
+def tags(request):
+    return None
+
+
+def users(request):
+    return None
