@@ -18,7 +18,30 @@
     <div class="registration_container">
         <form method="post" class="registration_form" action="/registration/">
             {% csrf_token %}
-            {{ form.as_p }}
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% if errors %}
+                <p class="input_error">Username error</p>
+            {% endif %}
+            <div class="input_div">
+                <p class="field_desc">{{ form.username.label }}</p>
+                <p class="field">{{ form.username }}</p>
+            </div>
+            <div class="input_div">
+                <p class="field_desc">{{ form.email.label }}</p>
+                <p class="field">{{ form.email }}</p>
+            </div>
+            <div class="input_div">
+                <p class="field_desc">{{ form.password1.label }}</p>
+                <p class="field">{{ form.password1 }}</p>
+            </div>
+            <div class="input_div">
+                <p class="field_desc">{{ form.password2.label }}</p>
+                <p class="field">{{ form.password2 }}</p>
+            </div>
             <div>
                 <input type="submit" value="Create account" class="btn btn-primary forum_btn"/>
                 <input type="hidden" name="next" value="{{ next }}"/>
