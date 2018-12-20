@@ -34,7 +34,7 @@ def registration(request):
 def posts(request):
     posts = Post.objects.all()
     context = {'posts': posts}
-    return render(request, 'posts.html', context=context)
+    return render(request, 'post/posts.html', context=context)
 
 
 def tags(request):
