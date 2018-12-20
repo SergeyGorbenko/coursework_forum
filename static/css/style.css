@@ -247,7 +247,8 @@
     text-decoration: underline #79E1FF;
 }
 
-.no_posts {
+.no_posts,
+.no_tags {
     margin: 20px;
 }
 
@@ -272,8 +273,18 @@
     border: 3px solid #D9EFFF;
 }
 
-.users_head {
+.users_head,
+.tags_head {
     margin-left: 20px;
     margin-top: 15px;
-    width: 95vw;
+    width: 89vw;
+}
+
+.create_tag_btn {
+    margin-right: 50px;
+    height: 40px;
+}
+
+.login_and_create_tag_btn {
+    margin-left: 20px;
 }

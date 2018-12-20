@@ -1,9 +1,8 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IT Forum Tags</title>
+    <title>IT Forum Create Tag</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -30,21 +29,6 @@
         </div>
     {% endif %}
 </header>
-<section class="d-flex">
-    <div class="list">
-        <ul class="left_sidebar">
-            <li id="posts"><a href="/posts">Posts</a></li>
-            <li id="tags"><a href="/tags">Tags</a></li>
-            <li is="users"><a href="/users">Users</a></li>
-        </ul>
-    </div>
-    <div class="users_head">
-        <h2>Tags</h2>
-        <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right
-            tags makes it easier for others to find and answer your question.</p>
-        <input type="text" class="search_field" placeholder="Filter by tag name"/>
-    </div>
-</section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

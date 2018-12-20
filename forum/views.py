@@ -39,7 +39,7 @@ def posts(request):
 
 def tags(request):
     context = {}
-    return render(request, 'tags.html', context=context)
+    return render(request, 'tag/tags.html', context=context)
 
 
 def users(request):
