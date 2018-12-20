@@ -1,6 +1,12 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    context = {}
+    return render(request, 'index.html', context=context)
+
+
+def logout(request):
+    return HttpResponseRedirect("/")
