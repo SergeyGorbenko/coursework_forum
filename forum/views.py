@@ -1,5 +1,7 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from forum.models import *
 
 # Create your views here.
 from forum.forms import Registration
@@ -11,5 +13,24 @@ def home(request):
 
 
 def registration(request):
-    context = {'form': Registration()}
+    context = {}
+    if request.method == 'POST':
+        form = Registration(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            pass_1 = form.cleaned_data['password1']
+            pass_2 = form.cleaned_data['password2']
+            try:
+                if User.objects.get(username=username) and User.objects.get(email=email):
+                    context['errors'] = ['user_exist']
+            except User.DoesNotExist:
+                if pass_1 != pass_2:
+                    context['errors'] += ['passwords_not_match']
+                else:
+                    user = User(username=username, email=email, password=pass_1)
+                    user.save()
+                    HttpResponseRedirect('/login/')
+
+    context['form'] = Registration()
     return render(request, 'registration/registration.html', context=context)
