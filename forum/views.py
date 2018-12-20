@@ -7,7 +7,8 @@ from forum.forms import Registration
 
 
 def index(request):
-    context = {}
+    posts = Post.objects.all()
+    context = {'posts': posts}
     return render(request, 'index.html', context=context)
 
 
@@ -31,6 +32,8 @@ def registration(request):
 
 
 def posts(request):
+    posts = Post.objects.all()
+    context = {'posts': posts}
     return None
 
 
