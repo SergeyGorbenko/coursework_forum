@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=15)
-    context = models.TextField()
+    context = models.TextField(blank=True, null=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True)
 
@@ -15,7 +15,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     theme = models.CharField(max_length=100)
-    context = models.TextField()
+    context = models.TextField(blank=True, null=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag)
