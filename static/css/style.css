@@ -22,19 +22,22 @@
     color: white;
 }
 
-.login {
+.login,
+.registration {
     text-align: center;
 }
 
-.login_container {
+.login_container,
+.registration_container {
     border: 1px solid #e4e6e8;
     border-radius: 5px;
-    width: 300px;
+    width: 400px;
     margin: 50px auto 0;
     padding: 30px;
 }
 
-.login_form {
+.login_form,
+.registration_form {
     text-align: left;
 }
 
@@ -64,6 +67,10 @@
 .field {
     height: 20px;
     border-radius: 5px;
+}
+
+.field > input{
+    width: 300px;
 }
 
 .green_btn {
@@ -104,7 +111,21 @@
     font-size: 25px;
 }
 
+.log_out:focus,
+.log_out:hover {
+    text-decoration: none;
+    color: white;
+}
+
 .logged_out_link {
     margin-left: 10px;
+}
 
+.sign_in_text,
+.sign_in_text:focus,
+.sign_in_text:hover {
+    color: white;
+    margin-top: 12px;
+    text-decoration: none;
+    margin-right: 20px;
 }

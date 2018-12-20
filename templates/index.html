@@ -9,19 +9,22 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<header class="header d-flex container-fluid">
+<header class="header right container-fluid">
     {% if user.is_authenticated %}
-        <a href="/logout">
-            <p class="log_out small_text">Log out, <span class="username">{{ user.username }}</span></p>
-        </a>
+        <div class="d-flex justify-content-end">
+            <a class="log_out" href="/logout">
+                <p class="small_text">Log out, <span class="username">{{ user.username }}</span></p>
+            </a>
+        </div>
     {% else %}
-        <a href="/login">
-            <p class="sign_in_text small_text">Sign In</p>
-        </a>
-        <button class="green_btn small_text">Create Account</button>
+        <div class="d-flex justify-content-end">
+            <a href="/login">
+                <p class="sign_in_text small_text">Sign In</p>
+            </a>
+            <button class="btn-default green_btn small_text" onclick="location.href='/registration'">Create Account</button>
+        </div>
     {% endif %}
 </header>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
