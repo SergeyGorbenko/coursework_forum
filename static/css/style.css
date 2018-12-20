@@ -7,13 +7,13 @@
     width: 100%;
     height: 50px;
     background: #323232;
-    text-align: center;
 }
 
 .header > a,
 .header > a:focus,
 .header > a:hover {
     text-decoration: none;
+    color: white;
 }
 
 .header > a > h1,
@@ -64,4 +64,47 @@
 .field {
     height: 20px;
     border-radius: 5px;
+}
+
+.green_btn {
+    background-color: #7BA60D;
+    margin: 5px;
+    border: none;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.center {
+    text-align: center;
+}
+
+.header > a > .small_text {
+    margin-right: 20px;
+    margin-top: 13px;
+}
+
+.small_text {
+    font-size: 15px;
+}
+
+.log_out {
+    color: white;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.username:focus,
+.username:hover {
+    text-decoration: underline white;
+}
+
+.logged_out {
+    margin: 10px;
+    font-size: 25px;
+}
+
+.logged_out_link {
+    margin-left: 10px;
+
 }
