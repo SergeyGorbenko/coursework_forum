@@ -16,7 +16,7 @@
 </header>
 <section class="registration">
     <div class="registration_container">
-        <form method="post" class="registration_form" action="/registration">
+        <form method="post" class="registration_form" action="/registration/">
             {% csrf_token %}
             {% for field in form %}
                 <div class="input_div">

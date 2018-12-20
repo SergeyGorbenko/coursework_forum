@@ -21,12 +21,16 @@ def registration(request):
             email = form.cleaned_data['email']
             pass_1 = form.cleaned_data['password1']
             pass_2 = form.cleaned_data['password2']
+            context['profile'] = {'username': username,
+                                  'email': email,
+                                  'pass_1': pass_1,
+                                  'pass_2': pass_2}
             try:
                 if User.objects.get(username=username) and User.objects.get(email=email):
-                    context['errors'] = ['user_exist']
+                    context['error'] = ['user_exist']
             except User.DoesNotExist:
                 if pass_1 != pass_2:
-                    context['errors'] += ['passwords_not_match']
+                    context['error'] = ['passwords_not_match']
                 else:
                     user = User(username=username, email=email, password=pass_1)
                     user.save()
