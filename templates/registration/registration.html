@@ -16,14 +16,20 @@
 </header>
 <section class="registration">
     <div class="registration_container">
+        <h2>Registration</h2>
         <form method="post" class="registration_form" action="/registration/">
             {% csrf_token %}
-            {% for field in form %}
-                <div class="input_div">
-                    <p class="field_desc">{{ field.label }}</p>
-                    <p class="field">{{ field }}</p>
-                </div>
-            {% endfor %}
+            <div class="input_div">
+                <p class="field_desc">{{ form.username.label }}</p>
+                <p class="field">{{ form.username }}</p>
+                <p class="field_desc">{{ form.email.label }}</p>
+                <p class="field">{{ form.email }}</p>
+                <p class="field_desc">{{ form.password1.label }}</p>
+                <p class="field">{{ form.password1 }}</p>
+                <p class="field_desc">{{ form.password2.label }}</p>
+                <p class="field">{{ form.password2 }}</p>
+                <p class="field">{{ error }}</p>
+            </div>
             <div>
                 <input type="submit" value="Create account" class="btn btn-primary forum_btn"/>
                 <input type="hidden" name="next" value="{{ next }}"/>

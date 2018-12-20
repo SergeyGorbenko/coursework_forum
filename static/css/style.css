@@ -69,7 +69,7 @@
     border-radius: 5px;
 }
 
-.field > input{
+.field > input {
     width: 300px;
 }
 
@@ -101,6 +101,12 @@
     cursor: pointer;
 }
 
+.username {
+    color: white;
+    margin-top: 12px;
+    margin-right: 50px;
+}
+
 .username:focus,
 .username:hover {
     text-decoration: underline white;
@@ -128,4 +134,110 @@
     margin-top: 12px;
     text-decoration: none;
     margin-right: 20px;
+}
+
+.left_sidebar {
+    list-style: none;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.left_sidebar > li {
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 5px 20px;
+}
+
+.left_sidebar > li:focus,
+.left_sidebar > li:hover {
+    background-color: #F2F2F2;
+}
+
+.left_sidebar > li > a,
+.left_sidebar > li > a:focus,
+.left_sidebar > li > a:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.list {
+    border-right: 1px solid #D6D9DC;
+    display: inline-block;
+    height: calc(100vh - 50px);
+}
+
+.page {
+    overflow-y: auto;
+}
+
+.head {
+    margin-top: 15px;
+    width: 60vw;
+}
+
+.head > h2 {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.head > button {
+    margin-right: 20px;
+}
+
+.posts_count {
+    font-size: 20px;
+    color: #382D3D;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.post {
+    padding: 20px;
+}
+
+.post_header {
+    color: #0F7DD2;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.post_text {
+    color: black;
+    font-size: 20px;
+}
+
+.input_error {
+    color: red;
+}
+
+.tag {
+    background-color: #CEE0ED;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tag_name {
+    color: #0F68BF;
+    font-size: 20px;
+}
+
+.time > p {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.post_username {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.post_username:focus,
+.post_username:hover {
+    color: #79E1FF;
+    text-decoration: underline #79E1FF;
+}
+
+.no_posts {
+    margin: 20px;
 }
