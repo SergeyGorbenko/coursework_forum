@@ -14,7 +14,7 @@
         <h1>IT Forum</h1>
     </a>
     {% if user.is_authenticated %}
-        <div class="justify-content-end">
+        <div class="d-flex justify-content-end">
             <span class="username">{{ user.username }}</span>
             <a class="log_out" href="/logout">
                 <p class="small_text">Log out</p>
