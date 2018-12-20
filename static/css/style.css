@@ -23,12 +23,14 @@
 }
 
 .login,
-.registration {
+.registration,
+.password_reset {
     text-align: center;
 }
 
 .login_container,
-.registration_container {
+.registration_container,
+.password_reset_container {
     border: 1px solid #e4e6e8;
     border-radius: 5px;
     width: 400px;
@@ -37,7 +39,8 @@
 }
 
 .login_form,
-.registration_form {
+.registration_form,
+.password_reset_form {
     text-align: left;
 }
 
@@ -84,6 +87,10 @@
 
 .center {
     text-align: center;
+}
+
+.left {
+    text-align: left;
 }
 
 .header > a > .small_text {
