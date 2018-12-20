@@ -256,3 +256,20 @@
     height: 30px;
     border-right: 2px solid #E47249;
 }
+
+.search_field {
+    border: 1px solid #66BFFF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.search_field:focus,
+.search_field:hover {
+    border: 3px solid #D9EFFF;
+}
+
+.users_head {
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 95vw;
+}
