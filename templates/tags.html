@@ -15,7 +15,7 @@
     </a>
     {% if user.is_authenticated %}
         <div class="d-flex justify-content-end">
-            <span class="username">{{ user.username }}</span>
+            <span class="username"><a href="/profile">{{ user.username }}</a></span>
             <a class="log_out" href="/logout">
                 <p class="small_text">Log out</p>
             </a>

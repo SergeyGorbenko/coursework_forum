@@ -114,6 +114,10 @@
     margin-right: 50px;
 }
 
+.username > a {
+    color: white;
+}
+
 .username:focus,
 .username:hover {
     text-decoration: underline white;
