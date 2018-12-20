@@ -12,19 +12,80 @@
 <header class="header right container-fluid">
     {% if user.is_authenticated %}
         <div class="d-flex justify-content-end">
+            <span class="username">{{ user.username }}</span>
             <a class="log_out" href="/logout">
-                <p class="small_text">Log out, <span class="username">{{ user.username }}</span></p>
+                <p class="small_text">Log out</p>
             </a>
         </div>
     {% else %}
         <div class="d-flex justify-content-end">
-            <a href="/login">
-                <p class="sign_in_text small_text">Sign In</p>
+            <a class="sign_in_text" href="/login">
+                <p class="small_text">Sign In</p>
             </a>
-            <button class="btn-default green_btn small_text" onclick="location.href='/registration'">Create Account</button>
+            <button class="btn-default green_btn small_text" onclick="location.href='/registration'">Create Account
+            </button>
         </div>
     {% endif %}
 </header>
+<section class="middle d-flex">
+    <div class="list">
+        <ul class="left_sidebar">
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/tags">Tags</a></li>
+            <li><a href="/users">Users</a></li>
+        </ul>
+    </div>
+    <div class="page">
+        {% if posts %}
+            <div class="head d-flex justify-content-between">
+                <h2>All Posts</h2>
+                {% if user.is_authenticated %}
+                    <button class="btn btn-primary" onclick="location.href = '/posts/new_post'">Create Post</button>
+                {% endif %}
+            </div>
+            <div class="posts_count">
+                <p>{{ posts.count }} posts</p>
+            </div>
+            <hr>
+            <div class="post">
+                <p class="post_header">{{ post.header }}</p>
+                <p class="post_text">{{ post.text }}</p>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        {% for tag in post.tags %}
+                            <div class="tag">
+                                <p class="tag_name">{{ tag.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="time">
+                        <p>Posted at {{ post.time_date }} by <span class="post_username">{{ post.username }}</span></p>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="post">
+                <p class="post_header">{{ post.header }}</p>
+                <p class="post_text">{{ post.text }}</p>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        {% for tag in post.tags %}
+                            <div class="tag">
+                                <p class="tag_name">{{ tag.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="time">
+                        <p>Posted at {{ post.time_date }} by <span class="post_username">{{ post.username }}</span></p>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        {% else %}
+            <h2 class="no_posts">No posts yet. But you can be the first publisher!</h2>
+        {% endif %}
+    </div>
+</section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
