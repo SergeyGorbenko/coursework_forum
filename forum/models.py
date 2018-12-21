@@ -5,11 +5,14 @@ from django.db import models
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='gallery_photos')
+    photo = models.ImageField(upload_to='gallery_photos', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=15, unique=True)
     context = models.TextField(blank=True, null=True)
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True)
@@ -19,7 +22,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    theme = models.CharField(max_length=100)
+    theme = models.CharField(max_length=100, unique=True)
     context = models.TextField(blank=True, null=True)
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now_add=True)

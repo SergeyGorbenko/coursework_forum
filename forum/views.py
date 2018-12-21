@@ -24,6 +24,8 @@ def registration(request):
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            profile = UserProfile(user=User.objects.get(username=username))
+            profile.save()
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/')
@@ -33,8 +35,9 @@ def registration(request):
 
 def posts(request):
     all_posts = Post.objects.all()
+    all_tags = Tag.objects.all()
     form = CreatePost()
-    context = {'posts': all_posts, 'form': form}
+    context = {'posts': all_posts, 'tags': all_tags, 'form': form}
     return render(request, 'post/posts.html', context=context)
 
 
