@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from forum.models import *
 
 # Create your views here.
-from forum.forms import Registration, CreatePost, CreateTag
+from forum.forms import Registration, CreatePost, CreateTag, ChangeProfile
 
 
 def index(request):
@@ -60,3 +60,9 @@ def create_post(request):
 
 def create_tag(request):
     return redirect('/tags/')
+
+
+def profile(request):
+    form = ChangeProfile()
+    context = {'form': form}
+    return render(request, 'user/profile.html', context=context)
