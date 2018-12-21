@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from forum.models import *
 
 # Create your views here.
-from forum.forms import Registration
+from forum.forms import Registration, CreatePost, CreateTag
 
 
 def index(request):
@@ -33,7 +33,7 @@ def registration(request):
 
 def posts(request):
     all_posts = Post.objects.all()
-    form = CreateTag()
+    form = CreatePost()
     context = {'posts': all_posts, 'form': form}
     return render(request, 'post/posts.html', context=context)
 
