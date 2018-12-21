@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from forum.models import *
 
 # Create your views here.
-from forum.forms import Registration, CreateTag
+from forum.forms import Registration
 
 
 def index(request):
@@ -48,7 +48,7 @@ def tags(request):
 def users(request):
     all_users = UserProfile.objects.all()
     context = {'users': all_users}
-    return render(request, 'users.html', context=context)
+    return render(request, 'user/users.html', context=context)
 
 
 def create_post(request):
