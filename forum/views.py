@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from forum.models import *
 
 # Create your views here.
-from forum.forms import Registration
+from forum.forms import Registration, CreateTag
 
 
 def index(request):
@@ -32,16 +32,28 @@ def registration(request):
 
 
 def posts(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
+    all_posts = Post.objects.all()
+    form = CreateTag()
+    context = {'posts': all_posts, 'form': form}
     return render(request, 'post/posts.html', context=context)
 
 
 def tags(request):
-    context = {}
+    all_tags = Tag.objects.all()
+    form = CreateTag()
+    context = {'tags': all_tags, 'form': form}
     return render(request, 'tag/tags.html', context=context)
 
 
 def users(request):
-    context = {}
+    all_users = UserProfile.objects.all()
+    context = {'users': all_users}
     return render(request, 'users.html', context=context)
+
+
+def create_post(request):
+    return redirect('/posts/')
+
+
+def create_tag(request):
+    return redirect('/tags/')
