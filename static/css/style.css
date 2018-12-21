@@ -294,12 +294,19 @@
     margin-left: 20px;
 }
 
-.tag_name {
+.tag_names {
+    margin-left: 20px;
     background-color: #CEE0ED;
-    font-size: 25px;
+    padding: 5px;
+    font-size: 20px;
     font-weight: lighter;
     color: #507C9C;
     border-radius: 5px;
+}
+
+.tag_count {
+    font-size: 20px;
+    padding-left: 10px;
 }
 
 .tag_desc {
@@ -316,4 +323,10 @@
 
 .tag_label {
     margin-top: 100px;
+}
+
+.tag_div {
+    max-height: 150px;
+    height: 150px;
+    cursor: pointer;
 }
