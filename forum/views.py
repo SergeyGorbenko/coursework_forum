@@ -44,4 +44,4 @@ def tags(request):
 
 def users(request):
     context = {}
-    return render(request, 'users.html', context=context)
+    return render(request, 'user/users.html', context=context)
