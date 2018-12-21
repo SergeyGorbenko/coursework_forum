@@ -17,7 +17,10 @@ class Registration(UserCreationForm):
 class CreatePost(ModelForm):
     class Meta:
         model = Post
+        fields = ('theme', 'context')
 
 
 class CreateTag(ModelForm):
-    model = Tag
+    class Meta:
+        model = Tag
+        fields = ('name', 'context')
