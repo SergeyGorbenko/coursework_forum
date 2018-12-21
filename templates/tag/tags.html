@@ -52,12 +52,16 @@
                 tags makes it easier for others to find and answer your question.</p>
             <input type="text" class="search_field" placeholder="Filter by tag name"/>
         </div>
+        <hr/>
         <div>
             {% if tags %}
                 <div class="d-inline p-2">
                     {% for tag in tags %}
-                        <p><span class="tag_name">{{ tag.name }}</span> x {{ tag.count }}</p>
-                        <p class="tag_desc">{{ tag.context }}</p>
+                        <div class="tag_div">
+                            <p><span class="tag_names">{{ tag.name }}</span><span
+                                    class="tag_count">x {{ tag.count }}</span></p>
+                            <p class="tag_desc">{{ tag.context }}</p>
+                        </div>
                     {% endfor %}
                 </div>
             {% else %}
