@@ -44,7 +44,8 @@
     text-align: left;
 }
 
-.field_desc {
+.field_desc,
+.taggle_placeholder {
     color: black;
     font-weight: bold;
     font-size: 20px;
@@ -73,6 +74,10 @@
 }
 
 .field > input {
+    width: 300px;
+}
+
+.tag-editor {
     width: 300px;
 }
 
@@ -287,4 +292,28 @@
 
 .login_and_create_tag_btn {
     margin-left: 20px;
+}
+
+.tag_name {
+    background-color: #CEE0ED;
+    font-size: 25px;
+    font-weight: lighter;
+    color: #507C9C;
+    border-radius: 5px;
+}
+
+.tag_desc {
+    font-size: 25px;
+    font-weight: lighter;
+    color: black;
+}
+
+.field > textarea {
+    height: 100px;
+    resize: none;
+    width: 300px;
+}
+
+.tag_label {
+    margin-top: 100px;
 }
