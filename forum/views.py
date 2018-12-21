@@ -18,7 +18,7 @@ def registration(request):
     if request.method == 'GET':
         form = Registration()
         return render(request, 'registration/registration.html', {'form': form})
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = Registration(request.POST)
         if form.is_valid():
             form.save()
@@ -34,11 +34,17 @@ def registration(request):
 
 
 def posts(request):
-    all_posts = Post.objects.all()
-    all_tags = Tag.objects.all()
-    form = CreatePost()
-    context = {'posts': all_posts, 'tags': all_tags, 'form': form}
-    return render(request, 'post/posts.html', context=context)
+    if request.method == 'GET':
+        all_posts = Post.objects.all()
+        all_tags = Tag.objects.all()
+        form = CreatePost()
+        context = {'posts': all_posts, 'tags': all_tags, 'form': form}
+        return render(request, 'post/posts.html', context=context)
+    elif request.method == 'POST':
+        form = CreatePost(request.POST)
+        tags = request.POST.get('tags')
+        print(form)
+        print(tags)
 
 
 def tags(request):
