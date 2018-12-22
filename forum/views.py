@@ -8,7 +8,7 @@ from forum.forms import Registration, CreatePost, CreateTag, ChangeProfile
 
 def index(request):
     posts = Post.objects.all()
-    context = {'count': posts.count(), 'posts': posts}
+    context = {'posts': posts}
     return render(request, 'index.html', context=context)
 
 
@@ -36,15 +36,9 @@ def registration(request):
 def posts(request):
     if request.method == 'GET':
         all_posts = Post.objects.all()
-        all_tags = Tag.objects.all()
         form = CreatePost()
-        context = {'posts': all_posts, 'tags': all_tags, 'form': form}
+        context = {'posts': all_posts, 'form': form}
         return render(request, 'post/posts.html', context=context)
-    elif request.method == 'POST':
-        form = CreatePost(request.POST)
-        tags = request.POST.get('tags')
-        print(form)
-        print(tags)
 
 
 def tags(request):
@@ -61,14 +55,65 @@ def users(request):
 
 
 def create_post(request):
-    return redirect('/posts/')
+    if request.method == 'POST':
+        form = CreatePost(request.POST)
+        if form.is_valid():
+            print(11111111111)
+            theme = request.POST.get('theme')
+            context = request.POST.get('context')
+            tags = str(request.POST.get('tags')).split(',')
+            creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
+            post = Post(theme=theme, context=context, creator=creator)
+            post.save()
+            for tag in tags:
+                try:
+                    t = Tag.objects.get(name=tag)
+                except Tag.DoesNotExist:
+                    t = Tag.objects.create(name=tag, creator=creator)
+                t.count += 1
+                t.save()
+                post.tags.add(t)
+            post.save()
+            creator.count_posts += 1
+            creator.save()
+            return redirect('/posts/')
+        else:
+            return render(request, 'post/posts.html', {'form': form})
 
 
 def create_tag(request):
+    if request.method == 'POST':
+        form = CreateTag(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            context = form.cleaned_data.get('context')
+            user = request.user
+            creator = UserProfile.objects.get(user=User.objects.get(username=user))
+            tag = Tag(name=name, context=context, creator=creator)
+            tag.save()
+            creator.count_tags += 1
+            creator.save()
     return redirect('/tags/')
 
 
-def profile(request):
+def create_comment(request, name_post):
+    if request.method == 'POST':
+        context = request.POST.get('context')
+        creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
+        post = Post.objects.get(theme=name_post)
+        Comment.objects.create(creator=creator, context=context, post=post)
+        return redirect(f'/posts/{name_post}/')
+
+
+def profile(request, username):
     form = ChangeProfile()
-    context = {'form': form}
+    profile = UserProfile.objects.get(user=User.objects.get(username=username))
+    context = {'form': form, 'profile': profile}
     return render(request, 'user/profile.html', context=context)
+
+
+def post(request, post):
+    current_post = Post.objects.get(theme=post)
+    comments = Comment.objects.filter(post=post)
+    context = {'post': current_post, 'comments': comments}
+    return render(request, 'post/post.html', context=context)

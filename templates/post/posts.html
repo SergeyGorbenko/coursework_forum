@@ -41,6 +41,17 @@
         </ul>
     </div>
     <div class="page">
+        {% if form.errors %}
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in field.errors %}
+                            <small class="error">{{ error|escape }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         {% if posts %}
             <div class="head d-flex justify-content-between">
                 <h2>All Posts</h2>
@@ -154,6 +165,7 @@
     $("#tags_input").tagEditor({
         maxTags: 4,
         maxLength: 25,
+
         forceLowercase: false,
         delimiter: ',',
         removeDuplicates: true,
@@ -163,6 +175,7 @@
         placeholder: 'Enter tags ...',
         autocomplete: {
             delay: 300,
+            minLength: 2,
             position: {
                 collision: 'flip'
             },
