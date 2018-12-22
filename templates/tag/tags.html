@@ -30,7 +30,7 @@
         </div>
     {% endif %}
 </header>
-<section class="d-flex">
+<section class="d-flex content">
     <div class="list">
         <ul class="left_sidebar">
             <li id="posts"><a href="/posts">Posts</a></li>
@@ -38,7 +38,7 @@
             <li is="users"><a href="/users">Users</a></li>
         </ul>
     </div>
-    <div class="d-block">
+    <div class="page">
         <div class="tags_head">
             <div class="d-flex justify-content-between">
                 <h2>Tags</h2>
@@ -55,12 +55,16 @@
         <hr/>
         <div>
             {% if tags %}
-                <div class="d-inline p-2">
+                <div class="d-flex p-2">
                     {% for tag in tags %}
                         <div class="tag_div">
-                            <p><span class="tag_names">{{ tag.name }}</span><span
+                            <p><span class="tag_names"
+                                     onclick="location.href = '/posts/{{ tag.name }}/'">{{ tag.name }}</span><span
                                     class="tag_count">x {{ tag.count }}</span></p>
-                            <p class="tag_desc">{{ tag.context }}</p>
+                            {% if tag.context == None %}
+                            {% else %}
+                                <p class="tag_desc">{{ tag.context }}</p>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

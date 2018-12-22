@@ -32,7 +32,7 @@
         </div>
     {% endif %}
 </header>
-<section class="d-flex">
+<section class="d-flex content">
     <div class="list">
         <ul class="left_sidebar">
             <li id="posts"><a href="/posts">Posts</a></li>
@@ -65,40 +65,25 @@
                 <p>{{ posts.count }} posts</p>
             </div>
             <hr>
-            <div class="post">
-                <p class="post_header">{{ post.header }}</p>
-                <p class="post_text">{{ post.text }}</p>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        {% for tag in post.tags %}
+            {% for post in posts %}
+                <div class="post">
+                    <p class="post_header" onclick="location.href = '/posts/{{ post.id }}/'">{{ post.theme }}</p>
+                    <p class="post_text">{{ post.context }}</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <div class="tag">
-                                <p class="tag_name">{{ tag.name }}</p>
+                                <p class="tag_name">{{ tags }}</p>
                             </div>
-                        {% endfor %}
-                    </div>
-                    <div class="time">
-                        <p>Posted at {{ post.time_date }} by <span class="post_username">{{ post.username }}</span></p>
+                        </div>
+                        <div class="time">
+                            <p>Posted at {{ post.create }} by <a class="post_username"
+                                                                 href="/profile/{{ post.creator }}"><span>{{ post.creator }}</span></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr/>
-            <div class="post">
-                <p class="post_header">{{ post.header }}</p>
-                <p class="post_text">{{ post.text }}</p>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        {% for tag in post.tags %}
-                            <div class="tag">
-                                <p class="tag_name">{{ tag.name }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="time">
-                        <p>Posted at {{ post.time_date }} by <span class="post_username">{{ post.username }}</span></p>
-                    </div>
-                </div>
-            </div>
-            <hr/>
+                <hr/>
+            {% endfor %}
         {% else %}
             <div class="center">
                 <h2 class="no_posts">No posts yet. But you can be the first publisher!</h2><br>
@@ -165,7 +150,6 @@
     $("#tags_input").tagEditor({
         maxTags: 4,
         maxLength: 25,
-
         forceLowercase: false,
         delimiter: ',',
         removeDuplicates: true,
@@ -174,7 +158,7 @@
         sortable: true,
         placeholder: 'Enter tags ...',
         autocomplete: {
-            delay: 300,
+            delay: 100,
             minLength: 2,
             position: {
                 collision: 'flip'
