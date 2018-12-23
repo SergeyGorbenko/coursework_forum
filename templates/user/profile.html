@@ -93,6 +93,26 @@
         $("#id_email").val("{{ profile.user.email }}");
         $("#id_photo").val("{{ profile.photo }}");
     }
+
+    $('.user_profile_img').click(function (event) {
+        event.preventDefault();
+        $("#id_photo").trigger('click');
+    });
+
+    $("#id_photo").change(function () {
+        let input = this;
+        let url = $(this).val();
+        let ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (input.files && input.files[0] && (ext === "gif" || ext === "png" || ext === "jpeg" || ext === "jpg")) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                $('.user_profile_img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            $('.user_profile_img').attr('src', '{% static "img/default-user.png" %}');
+        }
+    });
 </script>
 </body>
 </html>
