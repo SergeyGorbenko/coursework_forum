@@ -65,6 +65,8 @@
         <hr/>
         <div class="comments ml-4">
             {% if comments %}
+                <h2 class="post_desc_header">Answers</h2>
+                <hr/>
                 {% for comment in comments %}
                     <div class="comment d-block">
                         <p class="comment_text">{{ comment.context }}</p>
