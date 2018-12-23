@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='gallery_photos', blank=True, null=True)
@@ -34,7 +33,6 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
-    count_comments = models.IntegerField(default=0)
 
     def __str__(self):
         return self.theme
