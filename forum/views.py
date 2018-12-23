@@ -35,7 +35,10 @@ def registration(request):
 
 def posts(request):
     if request.method == 'GET':
-        all_posts = Post.objects.all()
+        if request.GET.get('tag'):
+            all_posts = Post.objects.filter(tags__name=request.GET.get('tag'))
+        else:
+            all_posts = Post.objects.all()
         form = CreatePost()
         context = {'posts': all_posts, 'form': form}
         return render(request, 'post/posts.html', context=context)
@@ -58,7 +61,6 @@ def create_post(request):
     if request.method == 'POST':
         form = CreatePost(request.POST)
         if form.is_valid():
-            print(11111111111)
             theme = request.POST.get('theme')
             context = request.POST.get('context')
             tags = str(request.POST.get('tags')).split(',')
@@ -96,24 +98,33 @@ def create_tag(request):
     return redirect('/tags/')
 
 
-def create_comment(request, name_post):
+def create_comment(request, post_id):
     if request.method == 'POST':
         context = request.POST.get('context')
         creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
-        post = Post.objects.get(theme=name_post)
+        post = Post.objects.get(id=post_id)
         Comment.objects.create(creator=creator, context=context, post=post)
-        return redirect(f'/posts/{name_post}/')
+        return redirect(f'/posts/{post_id}/')
 
 
-def profile(request, username):
+def my_profile(request):
     form = ChangeProfile()
-    profile = UserProfile.objects.get(user=User.objects.get(username=username))
+    profile = UserProfile.objects.get(user=User.objects.get(username=request.user))
     context = {'form': form, 'profile': profile}
     return render(request, 'user/profile.html', context=context)
 
 
-def post(request, post):
-    current_post = Post.objects.get(theme=post)
-    comments = Comment.objects.filter(post=post)
+def profile(request, username):
+    profile = UserProfile.objects.get(user=User.objects.get(username=username))
+    context = {'profile': profile}
+    if username == request.user:
+        form = ChangeProfile()
+        context['form'] = form
+    return render(request, 'user/profile.html', context=context)
+
+
+def post(request, post_id):
+    current_post = Post.objects.get(id=post_id)
+    comments = Comment.objects.filter(post=current_post)
     context = {'post': current_post, 'comments': comments}
     return render(request, 'post/post.html', context=context)

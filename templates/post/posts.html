@@ -41,6 +41,7 @@
         </ul>
     </div>
     <div class="page">
+{#    TODO create serch posts by theme#}
         {% if form.errors %}
             {% for field in form %}
                 {% if field.errors %}
@@ -71,9 +72,12 @@
                     <p class="post_text">{{ post.context }}</p>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <div class="tag">
-                                <p class="tag_name">{{ tags }}</p>
-                            </div>
+                            {% for tag in post.tags.all %}
+                                <div class="tag">
+                                    <a class="tag_name"
+                                       href="/posts?tag={{ tag.name }}"><span>{{ tag }}</span></a>
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="time">
                             <p>Posted at {{ post.create }} by <a class="post_username"

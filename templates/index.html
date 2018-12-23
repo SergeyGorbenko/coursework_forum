@@ -39,50 +39,7 @@
         </ul>
     </div>
     <div class="page">
-        {% if posts %}
-            <div class="head d-flex justify-content-between">
-                <h2>All Posts</h2>
-                {% if user.is_authenticated %}
-                    <button class="btn btn-primary" onclick="location.href = '/posts/new_post'">Create Post</button>
-                {% endif %}
-            </div>
-            <div class="posts_count">
-                <p>{{ posts.count }} posts</p>
-            </div>
-            <hr>
-            {% for post in posts %}
-                <div class="post">
-                    <p class="post_header" onclick="location.href = '/posts/{{ post.id }}/'">{{ post.theme }}</p>
-                    <p class="post_text">{{ post.context }}</p>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="tag">
-                                <p class="tag_name">{{ tags }}</p>
-                            </div>
-                        </div>
-                        <div class="time">
-                            <p>Posted at {{ post.create }} by <a class="post_username"
-                                                                 href="/profile/{{ post.creator }}"><span>{{ post.creator }}</span></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
-            {% endfor %}
-        {% else %}
-            <div class="center">
-                <h2 class="no_posts">No posts yet. But you can be the first publisher!</h2><br>
-                {% if user.is_authenticated %}
-                    <button class="btn btn-primary create_post_btn" onclick="location.href = '/posts/create_post'">
-                        Create Post
-                    </button>
-                {% else %}
-                    <button class="btn btn-primary create_post_btn" onclick="location.href = '/login'">Sign In
-                        And Create Post
-                    </button>
-                {% endif %}
-            </div>
-        {% endif %}
+
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

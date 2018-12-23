@@ -43,6 +43,7 @@
             <div class="d-flex justify-content-between">
                 <h2>Tags</h2>
                 {% if user.is_authenticated %}
+{#                    TODO button margin right#}
                     <button type="button" class="btn btn-primary create_post_btn" data-toggle="modal"
                             data-target="#createTagModal">Create Tag
                     </button>
@@ -51,6 +52,7 @@
             <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right
                 tags makes it easier for others to find and answer your question.</p>
             <input type="text" class="search_field" placeholder="Filter by tag name"/>
+            {#    TODO create serch tags by name#}
         </div>
         <hr/>
         <div>
@@ -59,7 +61,7 @@
                     {% for tag in tags %}
                         <div class="tag_div">
                             <p><span class="tag_names"
-                                     onclick="location.href = '/posts/{{ tag.name }}/'">{{ tag.name }}</span><span
+                                     onclick="location.href = '/posts?tag={{ tag.name }}'">{{ tag.name }}</span><span
                                     class="tag_count">x {{ tag.count }}</span></p>
                             {% if tag.context == None %}
                             {% else %}
