@@ -71,7 +71,7 @@
                     <p class="post_header" onclick="location.href = '/posts/{{ post.id }}/'">{{ post.theme }}</p>
                     <p class="post_text">{{ post.context }}</p>
                     <div class="d-flex justify-content-between">
-                        <div>
+                        <div class="d-flex">
                             {% for tag in post.tags.all %}
                                 <div class="tag">
                                     <a class="tag_name"
