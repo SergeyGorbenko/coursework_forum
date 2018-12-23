@@ -30,6 +30,34 @@
         </div>
     {% endif %}
 </header>
+<section class="d-flex content">
+    <div class="list">
+        <ul class="left_sidebar">
+            <li id="posts"><a href="/posts">Posts</a></li>
+            <li id="tags"><a href="/tags">Tags</a></li>
+            <li id="users"><a href="/users">Users</a></li>
+            {% if user.is_authenticated %}
+                <li id="profile"><a href="/profile">Profile</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="page">
+        <div class="users_head">
+            <h2 class="mb-5">{{ profile }} Profile</h2>
+            <form action="/profile/" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p class="field_desc">{{ field.label }}</p>
+                    <p class="field mb-5">{{ field }}</p>
+                {% endfor %}
+                <div class="d-flex">
+                    <button type="button" class="btn btn-secondary mr-5" onclick="reset_values();">Reset</button>
+                    <button type="submit" class="btn btn-primary">Change Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -40,5 +68,15 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    reset_values();
+    function reset_values() {
+        $("#id_username").val("{{ profile }}");
+        $("#id_first_name").val("{{ profile.user.first_name }}");
+        $("#id_last_name").val("{{ profile.user.last_name }}");
+        $("#id_email").val("{{ profile.user.email }}");
+        $("#id_photo").val("{{ profile.photo }}");
+    }
+</script>
 </body>
 </html>

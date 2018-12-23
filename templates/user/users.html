@@ -36,6 +36,9 @@
             <li id="posts"><a href="/posts">Posts</a></li>
             <li id="tags"><a href="/tags">Tags</a></li>
             <li id="users"><a href="/users">Users</a></li>
+            {% if user.is_authenticated %}
+                <li id="profile"><a href="/profile">Profile</a></li>
+            {% endif %}
         </ul>
     </div>
     <div class="page">

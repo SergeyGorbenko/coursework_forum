@@ -35,7 +35,10 @@
         <ul class="left_sidebar">
             <li id="posts"><a href="/posts">Posts</a></li>
             <li id="tags"><a href="/tags">Tags</a></li>
-            <li is="users"><a href="/users">Users</a></li>
+            <li id="users"><a href="/users">Users</a></li>
+            {% if user.is_authenticated %}
+                <li id="profile"><a href="/profile">Profile</a></li>
+            {% endif %}
         </ul>
     </div>
     <div class="page">
@@ -55,7 +58,7 @@
             {% csrf_token %}
             <h3 class="ml-4">Your answer</h3>
             <label class="ml-4 text_area_parent">
-                <textarea class="comment_text_area"></textarea>
+                <textarea class="comment_text_area" required></textarea>
             </label>
             <div id="results"></div>
             <div class="d-flex justify-content-end">
