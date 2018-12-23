@@ -422,3 +422,13 @@
     cursor: pointer;
     border-radius: 50%;
 }
+
+.info_header {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.info_info {
+    font-size: 25px;
+    font-weight: normal;
+}

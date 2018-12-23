@@ -42,7 +42,31 @@
         </ul>
     </div>
     <div class="page">
-
+        <h2 class="mt-5 ml-5">{{ profile.user }} Profile</h2>
+        <div class="users_head d-flex">
+            <div class="div">
+                {% if profile.photo %}
+                    <img src="{{ profile.photo }}" alt="User Image" title="User Image" class="user_profile_img mt-5">
+                {% else %}
+                    <img src="{% static 'img/default-user.png' %}" alt="User Image" title="User Image"
+                         class="user_profile_img mt-5">
+                {% endif %}
+            </div>
+            <div class="info mt-5">
+                {% if profile.about %}
+                    <p class="info_header">About:</p>
+                    <p>{{ profile.about }}</p>
+                {% endif %}
+                {% if profile.count_posts %}
+                    <p class="info_header">Count of posted posts: <span
+                            class="info_info">{{ profile.count_posts }}</span></p>
+                {% endif %}
+                {% if profile.count_tags %}
+                    <p class="info_header">Count of created tags: <span
+                            class="info_info">{{ profile.count_tags }}</span></p>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
