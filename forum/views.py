@@ -118,8 +118,7 @@ def profile(request, username):
     profile = UserProfile.objects.get(user=User.objects.get(username=username))
     context = {'profile': profile}
     if username == request.user:
-        form = ChangeProfile()
-        context['form'] = form
+        redirect('/profile/')
     return render(request, 'user/profile.html', context=context)
 
 

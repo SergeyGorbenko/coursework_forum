@@ -4,6 +4,7 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    about = models.CharField(max_length=255, blank=True)
     photo = models.ImageField(upload_to='gallery_photos', blank=True, null=True)
     count_posts = models.IntegerField(default=0)
     count_tags = models.IntegerField(default=0)
