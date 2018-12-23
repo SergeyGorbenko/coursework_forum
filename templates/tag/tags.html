@@ -56,8 +56,17 @@
         <hr/>
         <div>
             {% if tags %}
-                <div class="d-flex p-2">
+                <div class="d-flex flex-wrap p-2">
                     {% for tag in tags %}
+                        {% if tag.context == None %}
+                            <script>
+                                $(".tag_div").css("height", "50px");
+                            </script>
+                        {% else %}
+                            <script>
+                                $(".tag_div").css("height", "200px");
+                            </script>
+                        {% endif %}
                         <div class="tag_div">
                             <p><span class="tag_names"
                                      onclick="location.href = '/posts?tag={{ tag.name }}'">{{ tag.name }}</span><span

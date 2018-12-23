@@ -360,9 +360,10 @@
 }
 
 .tag_div {
-    max-height: 150px;
-    height: 150px;
-    width: 200px;
+    width: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    text-align: justify;
 }
 
 .post_desc_header {
