@@ -130,5 +130,15 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    $(function () {
+        $(".search_field").on("keyup", function () {
+            let value = $(this).val().toLowerCase();
+            $(".tag_div").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 </html>

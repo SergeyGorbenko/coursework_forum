@@ -295,6 +295,7 @@
     border: 1px solid #66BFFF;
     border-radius: 5px;
     padding: 5px;
+    width: 300px;
 }
 
 .search_field:focus,
@@ -444,7 +445,7 @@
     margin: 20px;
 }
 
-.user_div > div > p {
+.user_div > .d-flex > div > p {
     font-size: 13px;
     margin-bottom: 0;
 }

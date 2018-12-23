@@ -44,7 +44,6 @@
         </ul>
     </div>
     <div class="page">
-        {#    TODO create serch posts by theme#}
         {% if form.errors %}
             {% for field in form %}
                 {% if field.errors %}
@@ -68,6 +67,7 @@
             <div class="posts_count">
                 <p>{{ posts.count }} posts</p>
             </div>
+            <input type="text" class="search_field ml-3" placeholder="Search post"/>
             <hr>
             {% for post in posts %}
                 <div class="post">
@@ -88,8 +88,8 @@
                             </p>
                         </div>
                     </div>
+                    <hr/>
                 </div>
-                <hr/>
             {% endfor %}
         {% else %}
             <div class="center">
@@ -176,6 +176,16 @@
             },
             source: source
         },
+    });
+</script>
+<script>
+    $(function () {
+        $(".search_field").on("keyup", function () {
+            let value = $(this).val().toLowerCase();
+            $(".post").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
 </script>
 </body>

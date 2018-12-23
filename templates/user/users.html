@@ -49,17 +49,20 @@
             </div>
             <div class="d-flex flex-wrap">
                 {% for user in users %}
-                    <div class="d-flex user_div">
-                        {% if user.photo %}
-                            <img src="{{ user.photo }}" class="users_img" alt="User Image" title="User Image">
-                        {% else %}
-                            <img src="{% static 'img/default-user.png' %}" class="users_img" alt="User Image"
-                                 title="User Image">
-                        {% endif %}
-                        <div>
-                            <p class="user_name" onclick="location.href = '/profile/{{ user.user }}/'">{{ user.user }}</p>
-                            <p>Count of posts: {{ user.count_posts }}</p>
-                            <p>Count of tags: {{ user.count_tags }}</p>
+                    <div class="user_div">
+                        <div class="d-flex">
+                            {% if user.photo %}
+                                <img src="{{ user.photo }}" class="users_img" alt="User Image" title="User Image">
+                            {% else %}
+                                <img src="{% static 'img/default-user.png' %}" class="users_img" alt="User Image"
+                                     title="User Image">
+                            {% endif %}
+                            <div>
+                                <p class="user_name"
+                                   onclick="location.href = '/profile/{{ user.user }}/'">{{ user.user }}</p>
+                                <p>Count of posts: {{ user.count_posts }}</p>
+                                <p>Count of tags: {{ user.count_tags }}</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -83,5 +86,15 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    $(function () {
+        $(".search_field").on("keyup", function () {
+            let value = $(this).val().toLowerCase();
+            $(".user_div, .d-flex").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 </html>
