@@ -117,8 +117,8 @@ def my_profile(request):
 def profile(request, username):
     profile = UserProfile.objects.get(user=User.objects.get(username=username))
     context = {'profile': profile}
-    if username == request.user:
-        redirect('/profile/')
+    if str(username) == str(request.user):
+        return redirect('/profile/')
     return render(request, 'user/profile.html', context=context)
 
 
