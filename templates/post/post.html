@@ -59,6 +59,10 @@
             <button class="btn btn-primary post_answer_btn">Post Your Answer</button>
         </div>
         <hr/>
+    {{ post.theme }}
+    {{ post.context }}
+    {{ post.creator }}
+    {{ post.create }}
         {% if comments %}
             {% for comment in post.comments %}
                 <h1>{{ comment.context }}</h1>
