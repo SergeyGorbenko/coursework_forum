@@ -51,25 +51,41 @@
             {% endfor %}
         </div>
         <hr/>
-        <h3 class="ml-4">Your answer</h3>
-        <label class="ml-4 text_area_parent">
-            <textarea class="comment_text_area"></textarea>
-        </label>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-primary post_answer_btn">Post Your Answer</button>
-        </div>
+        <form action="posts/{{ post.id }}/comment/" method="post" id="comment_form">
+            {% csrf_token %}
+            <h3 class="ml-4">Your answer</h3>
+            <label class="ml-4 text_area_parent">
+                <textarea class="comment_text_area"></textarea>
+            </label>
+            <div id="results"></div>
+            <div class="d-flex justify-content-end">
+                <input type="submit" class="btn btn-primary post_answer_btn" value="Post Your Answer"/>
+            </div>
+        </form>
         <hr/>
-        {% if comments %}
-            {% for comment in comments %}
-                <h1>{{ comment.context }}</h1>
-            {% endfor %}
-        {% else %}
-
-        {% endif %}
+        <div class="comments ml-4">
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="comment d-block">
+                        <p class="comment_text">{{ comment.context }}</p>
+                        <div class="d-flex justify-content-end mr-5">
+                            <div class="d-inline comment_info">
+                                <p>Answered at {{ comment.create }}</p>
+                                <p class="user" onclick="location.href = '/profile/{{ comment.creator }}/'"> by
+                                    <span>{{ comment.creator }}</span></p>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2>No comments yet!</h2>
+            {% endif %}
+        </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

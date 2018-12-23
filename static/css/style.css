@@ -197,6 +197,8 @@
     overflow-y: hidden;
     margin-left: 130px;
     width: available;
+    width: -moz-available;
+    width: -webkit-fill-available;
 }
 
 .head {
@@ -382,10 +384,31 @@
 .comment_text_area {
     border: 1px solid #888;
     width: 100%;
-    height: 300px;
-    resize: none;
+    min-height: 25px;
+    height: 150px;
+    resize: vertical;
+    padding: 10px;
 }
 
 .post_answer_btn {
     margin-right: 5%;
+}
+
+.comment_text {
+    font-size: 20px;
+}
+
+.user {
+    color: black;
+    cursor: pointer;
+}
+
+.user > span:focus,
+.user > span:hover {
+    text-decoration: underline #507C9C;
+    color: #507C9C;
+}
+
+.comment_info > p {
+    margin-bottom: 5px;
 }
