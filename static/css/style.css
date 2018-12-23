@@ -413,3 +413,11 @@
 .comment_info > p {
     margin-bottom: 5px;
 }
+
+.user_profile_img {
+    height: 300px;
+    width: 300px;
+    margin-right: 100px;
+    margin-left: 80px;
+    cursor: pointer;
+}

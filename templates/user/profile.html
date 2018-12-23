@@ -43,17 +43,29 @@
     </div>
     <div class="page">
         <div class="users_head">
-            <h2 class="mb-5">{{ profile }} Profile</h2>
+            <h2 class="mb-5 ml-5">{{ profile }} Profile</h2>
             <form action="/profile/" method="post">
                 {% csrf_token %}
-                {% for field in form %}
-                    <p class="field_desc">{{ field.label }}</p>
-                    <p class="field mb-5">{{ field }}</p>
-                {% endfor %}
                 <div class="d-flex">
-                    <button type="button" class="btn btn-secondary mr-5" onclick="reset_values();">Reset</button>
-                    <button type="submit" class="btn btn-primary">Change Profile</button>
+                    <img src="{% static 'img/default-user.png' %}" class="user_profile_img"/>
+                    <div>
+                        {% for field in form %}
+                            {% if field.label == "Photo" %}
+                                <p class="field_desc" id="profile_photo">{{ field.label }}</p>
+                                <p class="field">{{ field }}</p>
+                            {% else %}
+                                <p class="field_desc">{{ field.label }}</p>
+                                <p class="field mb-5">{{ field }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="d-flex mb-5">
+                            <button type="button" class="btn btn-secondary mr-5" onclick="reset_values();">Reset
+                            </button>
+                            <button type="submit" class="btn btn-primary">Change Profile</button>
+                        </div>
+                    </div>
                 </div>
+
             </form>
         </div>
     </div>
@@ -69,7 +81,11 @@
         crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
 <script>
+    $("#id_photo").hide();
+    $("#profile_photo").hide();
+
     reset_values();
+
     function reset_values() {
         $("#id_username").val("{{ profile }}");
         $("#id_first_name").val("{{ profile.user.first_name }}");

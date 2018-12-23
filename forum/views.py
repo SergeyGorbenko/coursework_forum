@@ -119,7 +119,7 @@ def profile(request, username):
     context = {'profile': profile}
     if str(username) == str(request.user):
         return redirect('/profile/')
-    return render(request, 'user/profile.html', context=context)
+    return render(request, 'user/user_profile.html', context=context)
 
 
 def post(request, post_id):
