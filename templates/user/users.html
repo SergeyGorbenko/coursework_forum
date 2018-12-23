@@ -42,10 +42,35 @@
         </ul>
     </div>
     <div class="page">
-        <div class="users_head">
-            <h2>Users</h2>
-            <input type="text" class="search_field" placeholder="Filter by user"/>
-        </div>
+        {% if users %}
+            <div class="users_head">
+                <h2>Users</h2>
+                <input type="text" class="search_field" placeholder="Filter by user"/>
+            </div>
+            <div class="d-flex flex-wrap">
+                {% for user in users %}
+                    <div class="d-flex user_div">
+                        {% if user.photo %}
+                            <img src="{{ user.photo }}" class="users_img" alt="User Image" title="User Image">
+                        {% else %}
+                            <img src="{% static 'img/default-user.png' %}" class="users_img" alt="User Image"
+                                 title="User Image">
+                        {% endif %}
+                        <div>
+                            <p class="user_name" onclick="location.href = '/profile/{{ user.user }}/'">{{ user.user }}</p>
+                            <p>Count of posts: {{ user.count_posts }}</p>
+                            <p>Count of tags: {{ user.count_tags }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div align="center">
+                <h2 class="ml-3 mt-3">No created users!</h2>
+                <button class="btn btn-primary create_post_btn ml-3" onclick="location.href = '/registration'">Sign up
+                </button>
+            </div>
+        {% endif %}
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.js"

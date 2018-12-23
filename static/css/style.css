@@ -432,3 +432,29 @@
     font-size: 25px;
     font-weight: normal;
 }
+
+.users_img {
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.user_div {
+    margin: 20px;
+}
+
+.user_div > div > p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.user_name {
+    color: #0F7DD2;
+    cursor: pointer;
+}
+
+.user_name:focus,
+.user_name:hover {
+    text-decoration: underline #0F7DD2;
+}
