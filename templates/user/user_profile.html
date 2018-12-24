@@ -46,7 +46,7 @@
         <div class="users_head d-flex">
             <div class="div">
                 {% if profile.photo %}
-                    <img src="{{ profile.photo }}" alt="User Image" title="User Image" class="user_profile_img mt-5">
+                    <img src="{{ profile.photo.url }}" alt="User Image" title="User Image" class="user_profile_img mt-5">
                 {% else %}
                     <img src="{% static 'img/default-user.png' %}" alt="User Image" title="User Image"
                          class="user_profile_img mt-5">
@@ -54,8 +54,7 @@
             </div>
             <div class="info mt-5">
                 {% if profile.about %}
-                    <p class="info_header">About:</p>
-                    <p>{{ profile.about }}</p>
+                    <p class="info_header">About: <span class="info_info">{{ profile.about }}</span></p>
                 {% endif %}
                 {% if profile.count_posts %}
                     <p class="info_header">Count of posted posts: <span
