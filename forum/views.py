@@ -7,9 +7,14 @@ from forum.forms import Registration, CreatePost, CreateTag, ChangeProfile
 
 
 def index(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
-    return render(request, 'index.html', context=context)
+    if request.method == 'GET':
+        if request.GET.get('tag'):
+            all_posts = Post.objects.filter(tags__name=request.GET.get('tag'))
+        else:
+            all_posts = Post.objects.all()
+        form = CreatePost()
+        context = {'posts': all_posts, 'form': form}
+        return render(request, 'post/posts.html', context=context)
 
 
 def registration(request):
@@ -98,7 +103,6 @@ def create_tag(request):
     return redirect('/tags/')
 
 
-# TODO
 def create_comment(request, post_id):
     if request.method == 'POST':
         context = request.POST.get('context')
