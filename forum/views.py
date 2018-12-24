@@ -101,12 +101,10 @@ def create_tag(request):
 # TODO
 def create_comment(request, post_id):
     if request.method == 'POST':
-        print(12345)
-        print(request.POST)
-        # context = request.POST.get('context')
-        # creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
-        # post = Post.objects.get(id=post_id)
-        # Comment.objects.create(creator=creator, context=context, post=post)
+        context = request.POST.get('context')
+        creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
+        post = Post.objects.get(id=post_id)
+        Comment.objects.create(creator=creator, context=context, post=post)
         return redirect(f'/posts/{post_id}/')
 
 

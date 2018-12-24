@@ -36,6 +36,7 @@ $(function () {
         $.ajax({
             url: "comment/",
             type: "POST",
+            async: false,
             data: {
                 context: $(".comment_text_area").val(),
                 creator: "{{ post.creator }}",
