@@ -107,7 +107,7 @@ def create_comment(request, post_id):
         # creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
         # post = Post.objects.get(id=post_id)
         # Comment.objects.create(creator=creator, context=context, post=post)
-        # return redirect(f'/posts/{post_id}/')
+        return redirect(f'/posts/{post_id}/')
 
 
 def my_profile(request):
