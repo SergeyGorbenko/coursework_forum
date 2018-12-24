@@ -53,13 +53,3 @@ class ChangeProfile(forms.Form):
     about = forms.CharField(label='About', max_length=255, required=False)
     email = forms.EmailField(label='Email address', required=False)
     photo = forms.ImageField(required=False)
-
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        try:
-            User.objects.get(username=username)
-            raise forms.ValidationError("A user with this name already exists.")
-        except:
-            pass
-
-        return username

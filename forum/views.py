@@ -98,20 +98,59 @@ def create_tag(request):
     return redirect('/tags/')
 
 
+# TODO
 def create_comment(request, post_id):
     if request.method == 'POST':
-        context = request.POST.get('context')
-        creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
-        post = Post.objects.get(id=post_id)
-        Comment.objects.create(creator=creator, context=context, post=post)
-        return redirect(f'/posts/{post_id}/')
+        print(12345)
+        print(request.POST)
+        # context = request.POST.get('context')
+        # creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
+        # post = Post.objects.get(id=post_id)
+        # Comment.objects.create(creator=creator, context=context, post=post)
+        # return redirect(f'/posts/{post_id}/')
 
 
 def my_profile(request):
-    form = ChangeProfile()
-    profile = UserProfile.objects.get(user=User.objects.get(username=request.user))
-    context = {'form': form, 'profile': profile}
-    return render(request, 'user/profile.html', context=context)
+    if request.method == 'POST':
+        form = ChangeProfile(request.POST, request.FILES)
+        if form.is_valid():
+            user = User.objects.get(username=request.user)
+            profile = UserProfile.objects.get(user__username=request.user)
+            if str(request.user) != str(form.cleaned_data['username']):
+
+                try:
+                    if User.objects.get(username=form.cleaned_data['username']) or User.objects.get(
+                            email=form.cleaned_data['email']):
+                        context = {'form': form}
+                        return render(request, 'user/profile.html', context=context)
+                except User.DoesNotExist:
+                    user.username = form.cleaned_data['username']
+                    user.first_name = form.cleaned_data['first_name']
+                    user.last_name = form.cleaned_data['last_name']
+                    user.email = form.cleaned_data['email']
+                    profile.about = form.cleaned_data['about']
+                    profile.photo = form.cleaned_data['photo']
+                    profile.user = user
+                    profile.save()
+            else:
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                user.email = form.cleaned_data['email']
+                profile.about = form.cleaned_data['about']
+                profile.photo = form.cleaned_data['photo']
+                profile.user = user
+                profile.save()
+            context = {'form': form, 'profile': profile}
+            return render(request, 'user/profile.html', context=context)
+        else:
+            context = {'form': form}
+            return render(request, 'user/profile.html', context=context)
+
+    if request.method == 'GET':
+        form = ChangeProfile()
+        profile = UserProfile.objects.get(user=User.objects.get(username=request.user))
+        context = {'form': form, 'profile': profile}
+        return render(request, 'user/profile.html', context=context)
 
 
 def profile(request, username):

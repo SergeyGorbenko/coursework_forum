@@ -44,7 +44,7 @@
     <div class="page">
         <div class="users_head">
             <h2 class="mb-5 ml-5">{{ profile }} Profile</h2>
-            <form action="/profile/" method="post">
+            <form action="/profile/" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="d-flex">
                     <img src="{% static 'img/default-user.png' %}" class="user_profile_img" alt="User Image" title="User Image"/>
