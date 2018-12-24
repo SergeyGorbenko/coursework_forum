@@ -54,18 +54,21 @@
             {% endfor %}
         </div>
         <hr/>
-        <form action="posts/{{ post.id }}/comment/" method="post" id="comment_form">
-            {% csrf_token %}
-            <h3 class="ml-4">Your answer</h3>
-            <label class="ml-4 text_area_parent">
-                <textarea class="comment_text_area" required></textarea>
-            </label>
-            <div id="results"></div>
-            <div class="d-flex justify-content-end">
-                <input type="submit" class="btn btn-primary post_answer_btn" value="Post Your Answer"/>
-            </div>
-        </form>
-        <hr/>
+        {% if user.is_authenticated %}
+            <form action="posts/{{ post.id }}/comment/" method="post" id="comment_form">
+                {% csrf_token %}
+                <h3 class="ml-4">Your answer</h3>
+                <label class="ml-4 text_area_parent">
+                    <textarea class="comment_text_area" required></textarea>
+                </label>
+                <div id="results"></div>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" class="btn btn-primary post_answer_btn" value="Post Your Answer"/>
+                </div>
+            </form>
+            <hr/>
+        {% else %}
+        {% endif %}
         <div class="comments ml-4">
             {% if comments %}
                 <h2 class="post_desc_header">Answers</h2>
