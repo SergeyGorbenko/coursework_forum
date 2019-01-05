@@ -1,6 +1,6 @@
 $(function () {
     let url = location.href.split("/");
-    if (url[3] === "posts") {
+    if (url[3] === "posts" || url[3] === "") {
         $("#posts").addClass("active_tab");
         $("#users").removeClass("active_tab");
         $("#tags").removeClass("active_tab");

@@ -6,8 +6,8 @@
 .header {
     position: fixed;
     width: 100%;
-    height: 50px;
-    background: #323232;
+    height: 60px;
+    background: #F2A12E;
 }
 
 .header > a,
@@ -83,7 +83,7 @@
 }
 
 .green_btn {
-    background-color: #7BA60D;
+    background-color: #33B4FF;
     margin: 5px;
     border: none;
     padding: 5px;
@@ -149,53 +149,52 @@
 .sign_in_text:focus,
 .sign_in_text:hover {
     color: white;
-    margin-top: 12px;
+    margin-top: 17px;
     text-decoration: none;
     margin-right: 20px;
 }
 
-.left_sidebar {
+.top_sidebar {
     list-style: none;
+    display: flex;
+    margin-bottom: 0;
 }
 
-.left_sidebar > li {
-    margin-top: 20px;
-    padding: 5px 50px 5px 30px;
+.top_sidebar > li {
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 32px;
 }
 
-.left_sidebar > li:focus,
-.left_sidebar > li:hover {
+.top_sidebar > li:focus,
+.top_sidebar > li:hover {
     background-color: #F2F2F2;
 }
 
-.left_sidebar > li > a,
-.left_sidebar > li > a:focus,
-.left_sidebar > li > a:hover {
+.top_sidebar > li > a,
+.top_sidebar > li > a:focus,
+.top_sidebar > li > a:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-
 .content {
-    padding-top: 50px;
+    padding-top: 110px;
 }
 
 .list {
-    border-right: 1px solid #D6D9DC;
-    display: inline-block;
-    width: 130px;
-    height: 100%;
+    border-bottom: 1px solid #D6D9DC;
+    width: 100%;
+    height: 50px;
     position: fixed;
-    top: 50px;
-    left: 0;
+    top: 60px;
     background-color: white;
     overflow-x: hidden;
 }
 
 .page {
     overflow-y: hidden;
-    margin-left: 130px;
     width: available;
     width: -moz-available;
     width: -webkit-fill-available;
@@ -287,8 +286,8 @@
 
 .active_tab {
     background-color: #F2F2F2;
-    height: 30px;
-    border-right: 2px solid #E47249;
+    height: 49px;
+    border-bottom: 2px solid #F2A12E;
 }
 
 .search_field {
