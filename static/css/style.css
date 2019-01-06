@@ -225,16 +225,20 @@
 }
 
 .post_header {
-    color: #0F7DD2;
-    font-size: 20px;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: #444;
 }
 
 .post_header:focus,
 .post_header:hover {
-    color: #33B4FF;
+    cursor: pointer;
+    color: #449;
 }
 
 .post_text {
@@ -247,15 +251,20 @@
 }
 
 .tag {
-    background-color: #CEE0ED;
+    background-color: rgba(255, 212, 82, 0.5);
     padding: 5px;
     border-radius: 5px;
     margin-right: 20px;
 }
 
 .tag_name {
-    color: #0F68BF;
+    color: rgb(97, 79, 255);
     font-size: 20px;
+}
+
+.tag_name:focus,
+.tag_name:hover {
+    color: rgb(97, 79, 255);
 }
 
 .time > p {
@@ -266,12 +275,13 @@
 .post_username {
     font-size: 15px;
     cursor: pointer;
+    color: rgb(97, 79, 255);;
 }
 
 .post_username:focus,
 .post_username:hover {
-    color: #79E1FF;
-    text-decoration: underline #79E1FF;
+    color: rgb(97, 79, 255);
+    text-decoration: underline rgb(97, 79, 255);
 }
 
 .no_posts,
@@ -323,18 +333,20 @@
 
 .tag_names {
     margin-left: 20px;
-    background-color: #E1ECF4;
+    background-color: rgba(255, 212, 82, 0.5);
     padding: 5px;
     font-size: 20px;
-    font-weight: lighter;
-    color: #507C9C;
+    font-weight: 600;
+    color: rgb(97, 79, 255);
     border-radius: 5px;
     cursor: pointer;
 }
 
 .tag_names:focus,
 .tag_names:hover {
-    background-color: #CEE0ED;
+    background-color: rgba(255, 212, 82, 0.5);
+    color: rgb(97, 79, 255);
+    text-decoration: underline rgb(97, 79, 255);
 }
 
 .tag_count {
@@ -344,7 +356,7 @@
 
 .tag_desc {
     margin-left: 20px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: lighter;
     color: black;
 }
@@ -450,11 +462,11 @@
 }
 
 .user_name {
-    color: #0F7DD2;
+    color: rgb(97, 79, 255);
     cursor: pointer;
 }
 
 .user_name:focus,
 .user_name:hover {
-    text-decoration: underline #0F7DD2;
+    text-decoration: underline rgb(97, 79, 255);
 }
