@@ -35,6 +35,11 @@ class Post(models.Model):
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
 
+    def display_tags(self):
+        return '\n'.join(['#' + genre.name for genre in self.tags.all()[:3]])
+
+    display_tags.short_description = 'Tags'
+
     def __str__(self):
         return self.theme
 
