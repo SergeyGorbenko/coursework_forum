@@ -104,6 +104,21 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('creator', 'create', 'post', LikeFilter, DislikeFilter)
 
 
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('name',)
+        }),
+        ('About', {
+            'fields': (('authors', 'edition', 'tags'), 'creator',)
+        }),
+        ('Context', {
+            'fields': (('description',), ('file',),)
+        }),
+    )
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'creator', 'count')

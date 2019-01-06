@@ -46,6 +46,12 @@ class CreateTag(ModelForm):
         fields = ('name', 'context')
 
 
+class CreateBook(ModelForm):
+    class Meta:
+        model = Book
+        fields = ('name', 'authors', 'edition', 'description', 'file')
+
+
 class ChangeProfile(forms.Form):
     username = forms.CharField(max_length=150, required=True, label='Username')
     first_name = forms.CharField(label='First name', max_length=30, required=False)
