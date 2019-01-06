@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from forum.models import *
 
 # Create your views here.
-from forum.forms import Registration, CreatePost, CreateTag, ChangeProfile
+from forum.forms import Registration, CreatePost, CreateTag, ChangeProfile, CreateBook
 
 
 def index(request):
@@ -169,11 +169,22 @@ def post(request, post_id):
     context = {'post': current_post, 'comments': comments}
     return render(request, 'post/post.html', context=context)
 
+
 def books(request):
-    return render(request, 'book/books.html')
+    all_books = Book.objects.all()
+    form = CreateBook()
+    context = {'books': all_books, 'form': form}
+    return render(request, 'book/books.html', context=context)
+
 
 def upload_book(request):
-    return render(request, 'book/books.html')
+    if request.method == 'POST':
+        form = CreateBook(request.POST)
+        if form.is_valid():
+            pass
+        else:
+            return render(request, 'book/books.html', {'form': form})
 
-def book(request):
-    return render(request, 'book/books.html')
+
+def book(request, book_id):
+    return render(request, 'book/book.html')

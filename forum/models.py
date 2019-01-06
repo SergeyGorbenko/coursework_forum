@@ -5,7 +5,7 @@ from django.db import models
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     about = models.CharField(max_length=255, blank=True)
-    photo = models.ImageField(upload_to='gallery_photos', blank=True, null=True)
+    photo = models.ImageField(upload_to='avatars', blank=True, null=True)
     count_posts = models.IntegerField(default=0)
     count_tags = models.IntegerField(default=0)
 
@@ -35,6 +35,11 @@ class Post(models.Model):
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
 
+    def display_tags(self):
+        return '\n'.join(['#' + genre.name for genre in self.tags.all()[:3]])
+
+    display_tags.short_description = 'Tags'
+
     def __str__(self):
         return self.theme
 
@@ -50,3 +55,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.post.theme + ' - ' + self.context
+
+
+class Book(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    authors = models.CharField(max_length=255, blank=True, null=True)
+    edition = models.DateField(blank=True, null=True)
+    description = models.CharField(max_length=255)
+    file = models.FileField(upload_to='books', blank=True, null=True)
+    tags = models.ManyToManyField(Tag)
+    create = models.DateTimeField(auto_now_add=True)
+    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["-create"]
+
+    def __str__(self):
+        return self.name
