@@ -14,4 +14,7 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('profile/', views.my_profile, name='my_profile'),
     path('profile/<str:username>/', views.profile, name='profile'),
+    path('books/', views.books, name='books'),
+    path('books/upload/', views.upload_book, name='upload_book'),
+    path('posts/<int:book_id>/', views.book, name='book'),
 ]

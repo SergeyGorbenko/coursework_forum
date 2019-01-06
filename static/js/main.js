@@ -1,25 +1,35 @@
 $(function () {
     let url = location.href.split("/");
-    if (url[3] === "posts") {
+    if (url[3] === "posts" || url[3] === "") {
         $("#posts").addClass("active_tab");
         $("#users").removeClass("active_tab");
         $("#tags").removeClass("active_tab");
         $("#profile").removeClass("active_tab");
+        $("#books").removeClass("active_tab");
     } else if (url[3] === "users") {
         $("#users").addClass("active_tab");
         $("#posts").removeClass("active_tab");
         $("#tags").removeClass("active_tab");
         $("#profile").removeClass("active_tab");
+        $("#books").removeClass("active_tab");
     } else if (url[3] === "tags") {
         $("#tags").addClass("active_tab");
         $("#users").removeClass("active_tab");
         $("#posts").removeClass("active_tab");
         $("#profile").removeClass("active_tab");
+        $("#books").removeClass("active_tab");
     } else if (url[3] === "profile") {
         $("#profile").addClass("active_tab");
         $("#tags").removeClass("active_tab");
         $("#users").removeClass("active_tab");
         $("#posts").removeClass("active_tab");
+        $("#books").removeClass("active_tab");
+    } else if (url[3] === "books") {
+        $("#posts").removeClass("active_tab");
+        $("#users").removeClass("active_tab");
+        $("#tags").removeClass("active_tab");
+        $("#profile").removeClass("active_tab");
+        $("#books").addClass("active_tab");
     }
 
     $("#comment_form").on("submit", function (event) {

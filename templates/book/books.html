@@ -3,9 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book Forum Tags</title>
+    <title>Book Forum</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/jquery.tag-editor.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -30,7 +32,7 @@
         </div>
     {% endif %}
 </header>
-<section class="d-flex content">
+<div class="content">
     <div class="list">
         <ul class="top_sidebar">
             <li id="posts"><a href="/posts">Posts</a></li>
@@ -43,66 +45,67 @@
         </ul>
     </div>
     <div class="page">
-        <div class="tags_head">
-            <div class="d-flex justify-content-between">
-                <h2>Tags</h2>
+        {% if books %}
+            <div class="head d-flex justify-content-between">
+                <h2>All Books</h2>
                 {% if user.is_authenticated %}
                     <button type="button" class="btn btn-primary create_post_btn" data-toggle="modal"
-                            data-target="#createTagModal">Create Tag
+                            data-target="#uploadBookModal">Upload Book
                     </button>
                 {% endif %}
             </div>
-            <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right
-                tags makes it easier for others to find and answer your question.</p>
-            <input type="text" class="search_field" placeholder="Filter by tag name"/>
-            {#    TODO create serch tags by name#}
-        </div>
-        <hr/>
-        <div>
-            {% if tags %}
-                <div class="d-flex flex-wrap p-2">
-                    {% for tag in tags %}
-                        {% if tag.context == None %}
-                            <script>
-                                $(".tag_div").css("height", "50px");
-                            </script>
-                        {% else %}
-                            <script>
-                                $(".tag_div").css("height", "200px");
-                            </script>
-                        {% endif %}
-                        <div class="tag_div">
-                            <p><span class="tag_names"
-                                     onclick="location.href = '/posts?tag={{ tag.name }}'">{{ tag.name }}</span><span
-                                    class="tag_count">x {{ tag.count }}</span></p>
-                            {% if tag.context == None %}
-                            {% else %}
-                                <p class="tag_desc">{{ tag.context }}</p>
-                            {% endif %}
+            <div class="posts_count">
+                <p>{{ books.count }} books</p>
+            </div>
+            <input type="text" class="search_field ml-3" placeholder="Search book"/>
+            <hr>
+            {% for book in books %}
+                <div class="book">
+                    <p class="book_header" onclick="location.href = '/books/{{ book.id }}/'">{{ book.name }}</p>
+                    <p class="book_text">{{ book.description }}</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            {% for tag in book.tags.all %}
+                                <div class="tag">
+                                    <a class="tag_name"
+                                       href="/posts?tag={{ tag.name }}"><span>{{ tag }}</span></a>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                        <div class="time">
+                            <p>Published at {{ book.create }} by <a class="book_username"
+                                                                    href="/profile/{{ book.creator }}"><span>{{ book.creator }}</span></a>
+                            </p>
+                        </div>
+                    </div>
+                    <hr/>
                 </div>
-            {% else %}
-                <h2 class="no_tags">No tags yet. But you can be the first creator!</h2><br>
+            {% endfor %}
+        {% else %}
+            <div class="center">
+                <h2 class="no_posts">No books yet. But you can upload the first!</h2><br>
                 {% if user.is_authenticated %}
+                    <button type="button" class="btn btn-primary create_post_btn" data-toggle="modal"
+                            data-target="#uploadBookModal">
+                        Upload Book
+                    </button>
                 {% else %}
-                    <button class="btn btn-primary login_and_create_tag_btn" onclick="location.href = '/login'">Sign In
-                        And
-                        Create Tag
+                    <button class="btn btn-primary create_post_btn" onclick="location.href = '/login'">Sign In
+                        And Upload Book
                     </button>
                 {% endif %}
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
-</section>
-<div class="modal fade" id="createTagModal" tabindex="-1" role="dialog" aria-labelledby="createTagLabel"
+</div>
+<div class="modal fade" id="uploadBookModal" tabindex="-1" role="dialog" aria-labelledby="uploadBookLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="post" class="tag_creation_form" action="/tags/create/">
+            <form method="post" class="book_uploading_form" action="/books/upload/" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createTagLabel">Create New Tag</h5>
+                    <h5 class="modal-title" id="uploadBookLabel">Upload New Book</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,9 +116,9 @@
                         <p class="field">{{ field }}</p>
                     {% endfor %}
                 </div>
-                <div class="modal-footer tag_label">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create Tag</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
                 </div>
             </form>
         </div>
@@ -124,18 +127,21 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.caret.js' %}"></script>
+<script src="{% static 'js/jquery.tag-editor.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 <script>
     $(function () {
         $(".search_field").on("keyup", function () {
             let value = $(this).val().toLowerCase();
-            $(".tag_div").filter(function () {
+            $(".book").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

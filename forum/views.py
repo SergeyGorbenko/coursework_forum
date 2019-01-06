@@ -168,3 +168,12 @@ def post(request, post_id):
     comments = Comment.objects.filter(post=current_post)
     context = {'post': current_post, 'comments': comments}
     return render(request, 'post/post.html', context=context)
+
+def books(request):
+    return render(request, 'book/books.html')
+
+def upload_book(request):
+    return render(request, 'book/books.html')
+
+def book(request):
+    return render(request, 'book/books.html')

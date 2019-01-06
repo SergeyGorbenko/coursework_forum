@@ -6,8 +6,8 @@
 .header {
     position: fixed;
     width: 100%;
-    height: 50px;
-    background: #323232;
+    height: 60px;
+    background: #F2A12E;
 }
 
 .header > a,
@@ -83,7 +83,7 @@
 }
 
 .green_btn {
-    background-color: #7BA60D;
+    background-color: #33B4FF;
     margin: 5px;
     border: none;
     padding: 5px;
@@ -149,53 +149,52 @@
 .sign_in_text:focus,
 .sign_in_text:hover {
     color: white;
-    margin-top: 12px;
+    margin-top: 17px;
     text-decoration: none;
     margin-right: 20px;
 }
 
-.left_sidebar {
+.top_sidebar {
     list-style: none;
+    display: flex;
+    margin-bottom: 0;
 }
 
-.left_sidebar > li {
-    margin-top: 20px;
-    padding: 5px 50px 5px 30px;
+.top_sidebar > li {
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 32px;
 }
 
-.left_sidebar > li:focus,
-.left_sidebar > li:hover {
+.top_sidebar > li:focus,
+.top_sidebar > li:hover {
     background-color: #F2F2F2;
 }
 
-.left_sidebar > li > a,
-.left_sidebar > li > a:focus,
-.left_sidebar > li > a:hover {
+.top_sidebar > li > a,
+.top_sidebar > li > a:focus,
+.top_sidebar > li > a:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-
 .content {
-    padding-top: 50px;
+    padding-top: 110px;
 }
 
 .list {
-    border-right: 1px solid #D6D9DC;
-    display: inline-block;
-    width: 130px;
-    height: 100%;
+    border-bottom: 1px solid #D6D9DC;
+    width: 100%;
+    height: 50px;
     position: fixed;
-    top: 50px;
-    left: 0;
+    top: 60px;
     background-color: white;
     overflow-x: hidden;
 }
 
 .page {
     overflow-y: hidden;
-    margin-left: 130px;
     width: available;
     width: -moz-available;
     width: -webkit-fill-available;
@@ -226,16 +225,20 @@
 }
 
 .post_header {
-    color: #0F7DD2;
-    font-size: 20px;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: #444;
 }
 
 .post_header:focus,
 .post_header:hover {
-    color: #33B4FF;
+    cursor: pointer;
+    color: #449;
 }
 
 .post_text {
@@ -248,15 +251,20 @@
 }
 
 .tag {
-    background-color: #CEE0ED;
+    background-color: rgba(255, 212, 82, 0.5);
     padding: 5px;
     border-radius: 5px;
     margin-right: 20px;
 }
 
 .tag_name {
-    color: #0F68BF;
+    color: rgb(97, 79, 255);
     font-size: 20px;
+}
+
+.tag_name:focus,
+.tag_name:hover {
+    color: rgb(97, 79, 255);
 }
 
 .time > p {
@@ -267,12 +275,13 @@
 .post_username {
     font-size: 15px;
     cursor: pointer;
+    color: rgb(97, 79, 255);;
 }
 
 .post_username:focus,
 .post_username:hover {
-    color: #79E1FF;
-    text-decoration: underline #79E1FF;
+    color: rgb(97, 79, 255);
+    text-decoration: underline rgb(97, 79, 255);
 }
 
 .no_posts,
@@ -287,8 +296,8 @@
 
 .active_tab {
     background-color: #F2F2F2;
-    height: 30px;
-    border-right: 2px solid #E47249;
+    height: 49px;
+    border-bottom: 2px solid #F2A12E;
 }
 
 .search_field {
@@ -324,18 +333,20 @@
 
 .tag_names {
     margin-left: 20px;
-    background-color: #E1ECF4;
+    background-color: rgba(255, 212, 82, 0.5);
     padding: 5px;
     font-size: 20px;
-    font-weight: lighter;
-    color: #507C9C;
+    font-weight: 600;
+    color: rgb(97, 79, 255);
     border-radius: 5px;
     cursor: pointer;
 }
 
 .tag_names:focus,
 .tag_names:hover {
-    background-color: #CEE0ED;
+    background-color: rgba(255, 212, 82, 0.5);
+    color: rgb(97, 79, 255);
+    text-decoration: underline rgb(97, 79, 255);
 }
 
 .tag_count {
@@ -345,7 +356,7 @@
 
 .tag_desc {
     margin-left: 20px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: lighter;
     color: black;
 }
@@ -451,11 +462,11 @@
 }
 
 .user_name {
-    color: #0F7DD2;
+    color: rgb(97, 79, 255);
     cursor: pointer;
 }
 
 .user_name:focus,
 .user_name:hover {
-    text-decoration: underline #0F7DD2;
+    text-decoration: underline rgb(97, 79, 255);
 }
