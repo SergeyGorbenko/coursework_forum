@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -63,7 +64,9 @@ class Book(models.Model):
     authors = models.CharField(max_length=255, blank=True, null=True)
     edition = models.DateField(blank=True, null=True)
     description = models.CharField(max_length=255)
-    file = models.FileField(upload_to='books', blank=True, null=True)
+    file = models.FileField(upload_to='books', blank=True, null=True,
+                            validators=[FileExtensionValidator(
+                                allowed_extensions=['pdf', 'txt', 'doc', 'epub', 'djvu', 'fb2'])])
     tags = models.ManyToManyField(Tag)
     create = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

@@ -187,4 +187,6 @@ def upload_book(request):
 
 
 def book(request, book_id):
-    return render(request, 'book/book.html')
+    one_book = Book.objects.get(id=book_id)
+    context = {'book': one_book}
+    return render(request, 'book/book.html', context=context)
