@@ -109,7 +109,7 @@ def create_comment(request, post_id):
         creator = UserProfile.objects.get(user=User.objects.get(username=request.user))
         post = Post.objects.get(id=post_id)
         Comment.objects.create(creator=creator, context=context, post=post)
-        return redirect(f'/posts/{post_id}/')
+        return redirect(f"/posts/{post_id}/")
 
 
 def my_profile(request):
@@ -181,7 +181,10 @@ def upload_book(request):
     if request.method == 'POST':
         form = CreateBook(request.POST, request.FILES)
         if form.is_valid():
-            print(111)
+            Book.c
+            form.data['creator'] = UserProfile.objects.get(user=User.objects.get(username=request.user))
+            form.save()
+            return redirect('/books/')
         else:
             return render(request, 'book/books.html', {'form': form})
 
