@@ -47,7 +47,7 @@
     <div class="page">
         <div class="d-flex">
             <h1 class="book_desc_header">{{ book.name }}</h1>
-            <button class="btn btn-primary download_btn">Download</button>
+            <button class="btn btn-primary download_btn" id="download_btn">Download</button>
         </div>
         <hr/>
         <div class="d-flex">
@@ -87,5 +87,23 @@
 <script src="{% static 'js/jquery.caret.js' %}"></script>
 <script src="{% static 'js/jquery.tag-editor.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    function download(filename) {
+        let element = document.createElement('a');
+        element.setAttribute('href', $(".active").children("img").attr("src"));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    $(function () {
+        document.getElementById("download_btn").addEventListener("click", function () {
+            let book_name = "{{ book.name }}";
+            download(book_name);
+        }, false);
+    });
+</script>
 </body>
 </html>
