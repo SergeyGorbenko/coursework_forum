@@ -67,7 +67,6 @@ class Book(models.Model):
     file = models.FileField(upload_to='books', blank=True, null=True,
                             validators=[FileExtensionValidator(
                                 allowed_extensions=['pdf', 'txt', 'doc', 'epub', 'djvu', 'fb2'])])
-    tags = models.ManyToManyField(Tag)
     create = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 

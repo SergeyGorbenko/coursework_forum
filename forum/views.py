@@ -179,9 +179,10 @@ def books(request):
 
 def upload_book(request):
     if request.method == 'POST':
-        form = CreateBook(request.POST)
+        form = CreateBook(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
-            pass
+            print(111)
         else:
             return render(request, 'book/books.html', {'form': form})
 
