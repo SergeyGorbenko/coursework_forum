@@ -111,30 +111,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="field_desc">Name</p>
-                    <p class="field">
-                        <input type="text" name="name" maxlength="100" required id="id_name">
-                    </p>
-                    <p class="field_desc">Authors</p>
-                    <p class="field">
-                        <input type="text" name="authors" maxlength="100" required id="id_authors">
-                    </p>
-                    <p class="field_desc">Year</p>
-                    <p class="field">
-                        <input type="number" name="year" maxlength="4" required id="id_year" min="1900" max="2019">
-                    </p>
-                    <p class="field_desc">Edition</p>
-                    <p class="field">
-                        <input type="text" name="edition" maxlength="100" required id="id_edition">
-                    </p>
-                    <p class="field_desc">Description</p>
-                    <p class="field">
-                        <input type="text" name="description" maxlength="255" required id="id_description">
-                    </p>
-                    <p class="field_desc">Book</p>
-                    <p class="field">
-                        <input type="file" name="file" required id="id_file">
-                    </p>
+                    {% for field in form %}
+                        <p class="field_desc">{{ field.label }}</p>
+                        <p class="field">{{ field }}</p>
+                    {% endfor %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
