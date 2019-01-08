@@ -111,7 +111,7 @@ class BookAdmin(admin.ModelAdmin):
             'fields': ('name',)
         }),
         ('About', {
-            'fields': (('authors', 'edition', 'tags'), 'creator',)
+            'fields': (('authors', 'edition'), 'creator',)
         }),
         ('Context', {
             'fields': (('description',), ('file',),)
