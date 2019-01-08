@@ -181,12 +181,12 @@ def upload_book(request):
     if request.method == 'POST':
         form = CreateBook(request.POST, request.FILES)
         if form.is_valid():
-            Book.objects.create(name=form.data['name'],
-                                authors=form.data['authors'],
-                                edition=form.data['edition'],
-                                description=form.data['description'])
-            form.data['creator'] = UserProfile.objects.get(user=User.objects.get(username=request.user))
-            form.save()
+            Book.objects.create(name=form.cleaned_data['name'],
+                                authors=form.cleaned_data['authors'],
+                                edition=form.cleaned_data['edition'],
+                                description=form.cleaned_data['description'],
+                                file=form.cleaned_data['file'],
+                                creator=UserProfile.objects.get(user=User.objects.get(username=request.user)))
             return redirect('/books/')
         else:
             return render(request, 'book/books.html', {'form': form})
