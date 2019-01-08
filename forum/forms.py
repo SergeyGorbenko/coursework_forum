@@ -50,6 +50,12 @@ class CreateBook(ModelForm):
     class Meta:
         model = Book
         fields = ('name', 'authors', 'edition', 'description', 'file')
+        widgets = {
+            'edition': forms.DateInput(format=('%d-%m-%Y'),
+                                       attrs={'class': 'calendar-widget',
+                                              'data-role': 'data',
+                                              'placeholder': 'Select a date'})
+        }
 
 
 class ChangeProfile(forms.Form):

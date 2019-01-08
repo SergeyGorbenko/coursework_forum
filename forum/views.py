@@ -180,7 +180,6 @@ def books(request):
 def upload_book(request):
     if request.method == 'POST':
         form = CreateBook(request.POST, request.FILES)
-        print(form)
         if form.is_valid():
             print(111)
         else:
