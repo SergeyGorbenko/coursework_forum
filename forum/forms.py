@@ -51,10 +51,7 @@ class CreateBook(ModelForm):
         model = Book
         fields = ('name', 'authors', 'edition', 'description', 'file')
         widgets = {
-            'edition': forms.DateInput(format=('%d-%m-%Y'),
-                                       attrs={'class': 'calendar-widget',
-                                              'data-role': 'data',
-                                              'placeholder': 'Select a date'})
+            'edition': forms.widgets.DateInput(attrs={'type': 'date'}),
         }
 
 
