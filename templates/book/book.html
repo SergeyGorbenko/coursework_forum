@@ -91,7 +91,7 @@
 
     $(function () {
         document.getElementById("download_btn").addEventListener("click", function () {
-            let book_name = "{{ book.name }}";
+            let book_name = "{{ book.file.url }}";
             download(book_name);
         }, false);
     });
