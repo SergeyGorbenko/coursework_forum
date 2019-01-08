@@ -220,11 +220,13 @@
     margin-right: 10px;
 }
 
-.post {
+.post,
+.book {
     padding: 0 20px;
 }
 
-.post_header {
+.post_header,
+.book_header {
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
@@ -236,7 +238,9 @@
 }
 
 .post_header:focus,
-.post_header:hover {
+.post_header:hover,
+.book_header:focus,
+.book_header:hover {
     cursor: pointer;
     color: #449;
 }
